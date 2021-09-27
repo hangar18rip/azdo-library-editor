@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "azdo-library-editor.app": {
+      "commandName": "Project"
+    }
+  }
+}

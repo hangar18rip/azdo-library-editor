@@ -1,0 +1,50 @@
+﻿<Window x:Class="azdo_library_editor.app.GroupPicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:azdo_library_editor.app"
+        mc:Ignorable="d"
+        Title="Select groups" Height="450" Width="800" SnapsToDevicePixels="True">
+    <Grid Grid.IsSharedSizeScope="True" Margin="5" Background="{DynamicResource WindowBackground }">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="373*"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="Commands"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="Commands"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="lvGroups" Grid.ColumnSpan="5" ItemsSource="{Binding AvailableGroups}" SelectionMode="Extended" Grid.IsSharedSizeScope="True" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="3"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="Auto"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Id}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Name}" FontWeight="Bold"/>
+                        <TextBlock Grid.Column="4" Text="{Binding Variables.Count, StringFormat='{}{0} variable(s)'}" />
+                        <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Description, FallbackValue='&gt;None&lt;'}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="btnOK" Grid.Row="2" Grid.Column="2" Content="OK" IsDefault="True" Click="btnOK_Click"/>
+        <Button x:Name="btnCancel" Grid.Row="2" Grid.Column="4" Content="Cancel" IsCancel="True"/>
+    </Grid>
+</Window>

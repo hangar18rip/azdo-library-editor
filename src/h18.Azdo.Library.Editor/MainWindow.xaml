@@ -1,0 +1,61 @@
+﻿<Window x:Name="main" x:Class="azdo_library_editor.app.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:azdo_library_editor.app"
+        mc:Ignorable="d"
+        Title="Variable groups Editor" Height="450" Width="800" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="main_Loaded">
+    <Grid Background="{DynamicResource WindowBackground}">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ToolBar VerticalAlignment="Top">
+                <Button Content="Connect" x:Name="btnConnect" Click="btnConnect_Click" />
+                <TextBlock Text="Project" VerticalAlignment="Center"/>
+                <ComboBox IsEditable="True" />
+                <Button x:Name="btnGroups"  Content="Groups" Click="btnGroups_Click" IsEnabled="False"/>
+                <Button x:Name="btnLoad"  Content="Load" Click="btnLoad_Click" IsEnabled="False"/>
+                <Button x:Name="btnUpdate"  Content="Save" Click="btnUpdate_Click" IsEnabled="False"/>
+                <Button x:Name="btnRefresh"  Content="Reload" Click="btnRefresh_Click" IsEnabled="False" ToolTip="You will lose unsaved changes"/>
+            </ToolBar>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Commands"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Commands"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Commands"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Commands"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Selected groups :"/>
+                <TextBlock Grid.Column="2" Text="{Binding SelectedGroups}"/>
+                <!--<ListBox x:Name="lbGroups2" Grid.Column="2" SelectionMode="Extended">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>-->
+
+            </Grid>
+            <DataGrid Grid.Row="4" x:Name="dgGroups" AutoGenerateColumns="False" ItemsSource="{Binding Variables}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Variable" Binding="{Binding Name, Mode=TwoWay}" />
+                    <DataGridCheckBoxColumn Header="Is Secret" Binding="{Binding IsSecret, Mode=TwoWay}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+</Window>
