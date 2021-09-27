@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace azdo_library_editor.app.UnitTests
+namespace h18.Azdo.Library.Editor.UnitTests
 {
     [TestClass]
     public class ConnectionContextTests

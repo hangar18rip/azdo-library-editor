@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace azdo_library_editor.app
+namespace h18.Azdo.Library.Editor
 {
     public class ProjectVariable : Dictionary<string, string>
     {

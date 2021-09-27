@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
 
-namespace azdo_library_editor.app
+namespace h18.Azdo.Library.Editor
 {
     /// <summary>
     /// Interaction logic for GroupPicker.xaml

@@ -4,13 +4,13 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace azdo_library_editor.app
+namespace h18.Azdo.Library.Editor
 {
     public class ConnectionContext : INotifyPropertyChanged
     {
         private ConnectionContext()
         {
-            var settings = azdo_library_editor.app.Properties.Settings.Default;
+            var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
             Organization = settings.LastOrganization;
             Project = settings.LastProject;
             Pat = settings.LastPAT;
@@ -131,7 +131,7 @@ namespace azdo_library_editor.app
 
                 IsConnected = true;
 
-                var settings = azdo_library_editor.app.Properties.Settings.Default;
+                var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
                 settings.LastOrganization = Organization;
                 settings.LastProject = Project;
                 settings.LastPAT = Pat;

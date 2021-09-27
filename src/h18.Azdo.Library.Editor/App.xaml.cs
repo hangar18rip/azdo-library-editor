@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace azdo_library_editor.app
+namespace h18.Azdo.Library.Editor
 {
     /// <summary>
     /// Interaction logic for App.xaml

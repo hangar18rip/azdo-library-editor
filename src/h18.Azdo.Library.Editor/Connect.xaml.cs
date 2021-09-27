@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace azdo_library_editor.app
+namespace h18.Azdo.Library.Editor
 {
     /// <summary>
     /// Interaction logic for Connect.xaml
