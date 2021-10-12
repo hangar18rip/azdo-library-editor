@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using h18.Azdo.Library.Editor.Logic;
 
 namespace h18.Azdo.Library.Editor
 {
@@ -22,6 +11,11 @@ namespace h18.Azdo.Library.Editor
         public Connect()
         {
             InitializeComponent();
+            var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
+            ConnectionContext.Default.Organization = settings.LastOrganization;
+            ConnectionContext.Default.Project = settings.LastProject;
+            ConnectionContext.Default.Pat = settings.LastPAT;
+
             this.DataContext = ConnectionContext.Default;
         }
 
@@ -30,7 +24,22 @@ namespace h18.Azdo.Library.Editor
             var connected = await ConnectionContext.Default.Connect();
             if (connected)
             {
-                DialogResult = true;
+                try
+                {
+
+                    var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
+                    settings.LastOrganization = ConnectionContext.Default.Organization;
+                    settings.LastProject = ConnectionContext.Default.Project;
+                    settings.LastPAT = ConnectionContext.Default.Pat;
+                    settings.Save();
+
+                    DialogResult = true;
+
+                }
+                catch
+                {
+                    this.Close();
+                }
             }
         }
     }

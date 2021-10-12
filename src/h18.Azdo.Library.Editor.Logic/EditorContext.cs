@@ -8,13 +8,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace h18.Azdo.Library.Editor
+namespace h18.Azdo.Library.Editor.Logic
 {
-    public class AppContext
+    public class EditorContext
     {
 
-        static readonly AppContext _Default = new AppContext();
-        public static AppContext Default
+        static readonly EditorContext _Default = new EditorContext();
+        public static EditorContext Default
         {
             get
             {
@@ -55,7 +55,7 @@ namespace h18.Azdo.Library.Editor
             AvailableGroups.AddRange(await Client.GetVariableGroupsAsync(ConnectionContext.Default.Project));
 
             SelectedGroups.Clear();
-            SelectedGroups.AddRange(AppContext.Default.AvailableGroups);
+            SelectedGroups.AddRange(EditorContext.Default.AvailableGroups);
         }
 
         private void CleanGroups()
@@ -82,7 +82,7 @@ namespace h18.Azdo.Library.Editor
             CleanVariables();
 
 
-            var groups = AppContext.Default.SelectedGroups.OrderBy(e => e.Name);
+            var groups = EditorContext.Default.SelectedGroups.OrderBy(e => e.Name);
             var vars = new Dictionary<string, ProjectVariable>(StringComparer.OrdinalIgnoreCase);
             foreach (var g in groups)
             {
@@ -141,7 +141,8 @@ namespace h18.Azdo.Library.Editor
                     var tvar = vpgs[k].Variables;
                     if (tvar.ContainsKey(item.Name))
                     {
-                        MessageBox.Show($"The variable '{item.Name}' already exists. Review the list of variable your are defining and retry. The update is cancelled.", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        // TODO : Review
+                        // MessageBox.Show($"The variable '{item.Name}' already exists. Review the list of variable your are defining and retry. The update is cancelled.", "", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
                     else

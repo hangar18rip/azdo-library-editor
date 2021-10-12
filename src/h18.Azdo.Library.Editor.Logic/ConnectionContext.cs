@@ -4,16 +4,16 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace h18.Azdo.Library.Editor
+namespace h18.Azdo.Library.Editor.Logic
 {
     public class ConnectionContext : INotifyPropertyChanged
     {
         private ConnectionContext()
         {
-            var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
-            Organization = settings.LastOrganization;
-            Project = settings.LastProject;
-            Pat = settings.LastPAT;
+            //var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
+            //Organization = settings.LastOrganization;
+            //Project = settings.LastProject;
+            //Pat = settings.LastPAT;
 
         }
 
@@ -89,6 +89,23 @@ namespace h18.Azdo.Library.Editor
             }
         }
 
+        private bool _IsConnecting;
+
+        public bool IsConnecting
+        {
+            get
+            {
+                return _IsConnecting;
+            }
+            set
+            {
+                if (_IsConnecting != value)
+                {
+                    _IsConnecting = value;
+                    OnPropertyChanged(nameof(IsConnecting));
+                }
+            }
+        }
 
         private string _Pat;
         public string Pat
@@ -107,6 +124,7 @@ namespace h18.Azdo.Library.Editor
             }
         }
 
+
         public async Task<bool> Connect()
         {
             if (!CanConnect)
@@ -116,6 +134,7 @@ namespace h18.Azdo.Library.Editor
 
             try
             {
+                IsConnecting = true;
                 IsConnected = false;
                 if (Connection != null)
                 {
@@ -129,18 +148,19 @@ namespace h18.Azdo.Library.Editor
                 Connection = new VssConnection(orgUri, creds);
                 await Connection.ConnectAsync();
 
+
+                //var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
+                //settings.LastOrganization = Organization;
+                //settings.LastProject = Project;
+                //settings.LastPAT = Pat;
+                //settings.Save();
+                IsConnecting = false;
                 IsConnected = true;
-
-                var settings = h18.Azdo.Library.Editor.Properties.Settings.Default;
-                settings.LastOrganization = Organization;
-                settings.LastProject = Project;
-                settings.LastPAT = Pat;
-                settings.Save();
-
                 return true;
             }
             catch
             {
+                IsConnecting = false;
                 return false;
             }
         }
@@ -149,7 +169,7 @@ namespace h18.Azdo.Library.Editor
         {
             get
             {
-                return IsValid(Organization) && IsValid(Project) && IsValid(Pat);
+                return !IsConnecting && IsValid(Organization) && IsValid(Project) && IsValid(Pat);
             }
         }
 

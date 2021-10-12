@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "h18.Azdo.Library.Editor", "h18.Azdo.Library.Editor\h18.Azdo.Library.Editor.csproj", "{EED50607-F3F6-400E-9138-B4D1A4121D1E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "h18.Azdo.Library.Editor.UnitTests", "h18.Azdo.Library.Editor.UnitTests\h18.Azdo.Library.Editor.UnitTests.csproj", "{860B7188-672E-4C87-9C2A-64B77B5C30BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "h18.Azdo.Library.Editor.Logic.UnitTests", "h18.Azdo.Library.Editor.Logic.UnitTests\h18.Azdo.Library.Editor.Logic.UnitTests.csproj", "{860B7188-672E-4C87-9C2A-64B77B5C30BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "h18.Azdo.Library.Editor.Logic", "h18.Azdo.Library.Editor.Logic\h18.Azdo.Library.Editor.Logic.csproj", "{76340956-FC9A-480E-99A9-2F58C80DFE94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,26 @@ Global
 		{860B7188-672E-4C87-9C2A-64B77B5C30BC}.Release|x64.Build.0 = Release|Any CPU
 		{860B7188-672E-4C87-9C2A-64B77B5C30BC}.Release|x86.ActiveCfg = Release|Any CPU
 		{860B7188-672E-4C87-9C2A-64B77B5C30BC}.Release|x86.Build.0 = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|ARM.Build.0 = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|x64.Build.0 = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Debug|x86.Build.0 = Debug|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|ARM.ActiveCfg = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|ARM.Build.0 = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|ARM64.Build.0 = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|x64.ActiveCfg = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|x64.Build.0 = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|x86.ActiveCfg = Release|Any CPU
+		{76340956-FC9A-480E-99A9-2F58C80DFE94}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

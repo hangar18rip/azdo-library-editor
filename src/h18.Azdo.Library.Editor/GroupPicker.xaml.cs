@@ -1,8 +1,8 @@
 ﻿using Microsoft.TeamFoundation.DistributedTask.WebApi;
 using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Linq;
+using System.Windows;
 
 namespace h18.Azdo.Library.Editor
 {
@@ -34,8 +34,15 @@ namespace h18.Azdo.Library.Editor
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             SelectedGroups = lvGroups.SelectedItems.Cast<VariableGroup>().ToList();
-            this.DialogResult = true;
-            //this.Close();
+            try
+            {
+                this.DialogResult = true;
+            }
+            catch
+            {
+                this.Close();
+            }
+
         }
     }
 }

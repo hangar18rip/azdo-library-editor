@@ -6,6 +6,80 @@
         xmlns:local="clr-namespace:h18.Azdo.Library.Editor"
         mc:Ignorable="d"
         Title="Variable groups Editor" Height="450" Width="800" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="main_Loaded">
+    <Window.Resources>
+
+        <Style x:Key="ContentCellStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="LightGreen"/>
+            <!--<Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}">
+                            <TextBlock.ContextMenu>
+                                <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                                    <MenuItem Header="Generate password" Command="{Binding GeneratePassword, Source={x:Reference Name=main}}" CommandParameter="{Binding}" />
+                                    <MenuItem Header="Generate resource name" Command="{Binding GenerateResourceName}" />
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>-->
+            <!--<Setter Property="ContextMenu">
+                <Setter.Value>
+                    <ContextMenu DataContext="{Binding PlacementTarget, RelativeSource={RelativeSource Self}}">
+                        <MenuItem Header="Generate password" Command="{Binding GeneratePassword, Source={x:Reference Name=main}}" CommandParameter="{Binding}" />
+                        <MenuItem Header="Generate resource name" Command="{Binding GenerateResourceName}" />
+                    </ContextMenu>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+        <Style x:Key="ProductionCellStyle" BasedOn="{ StaticResource ContentCellStyle}" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Orange"/>
+        </Style>
+        <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
+        <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Border.ContextMenu>
+                                <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                                    <MenuItem Header="Generate password" Command="{Binding GeneratePassword, Source={x:Reference Name=main}}" CommandParameter="{Binding}" />
+                                    <MenuItem Header="Generate resource name" Command="{Binding GenerateResourceName}" />
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true"/>
+                        <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}}"/>
+                </MultiTrigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid Background="{DynamicResource WindowBackground}">
         <Grid Margin="5">
             <Grid.RowDefinitions>
@@ -49,13 +123,19 @@
             </ListBox>-->
 
             </Grid>
-            <DataGrid Grid.Row="4" x:Name="dgGroups" AutoGenerateColumns="False" ItemsSource="{Binding Variables}">
+            <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" Grid.Row="4" x:Name="dgGroups" AutoGenerateColumns="False" ItemsSource="{Binding Variables}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Variable" Binding="{Binding Name, Mode=TwoWay}" />
                     <DataGridCheckBoxColumn Header="Is Secret" Binding="{Binding IsSecret, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
+        </Grid>
+        <Grid x:Name="grdLoading" Background="#c0353535" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Loading ..." />
+                <ProgressBar IsIndeterminate="True" Width="250" Height="20"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
